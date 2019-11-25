@@ -195,8 +195,8 @@ button:hover {
                     <tr>
                       <th scope="col">Image</th>
                       <th scope="col">Price</th>
-                      <th scope="col">Passengers</th>
-                      <th scope="col">Suitcases</th>
+                      <th scope="col">Max Passengers</th>
+                      <th scope="col">Max Suitcases</th>
                       <th scope="col">Select Vehical</th>
                     </tr>
                   </thead>
