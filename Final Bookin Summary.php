@@ -3,6 +3,8 @@
     if (isset($_REQUEST["submit"])){
 //  session_start();
 
+		
+
         $firstname=$_REQUEST['firstname'];
         $lastname=$_REQUEST['lastname'];
         $email=$_REQUEST['email'];
@@ -17,8 +19,9 @@
         $payment=$_REQUEST['payment'];      
         $pasengers=$_REQUEST['pasengers'];
         $suitcases=$_REQUEST['suitcases'];
-        $vehical=$_REQUEST['selectVehical'];
-
+		$vehical=$_REQUEST['selectVehical'];
+		
+		
 
         $to="pdncpathiraja95@gmail.com";
         $subject="Add Ride";
@@ -61,10 +64,8 @@
 
 
         $to="pdncpathiraja95@gmail.com";
-        $subject="Add Ride";
-        $message="This Persion Book Our Vehical \n\n"."Full Name: ".$firstname. " ".$lastname."\n"."E-mail: ".$email."\n"."Phone : ".$phone."\n"."Country: ".$country."\n"."Passport Id: ".$passportId."\n"."Comments: ".$comments."\n"
-        ."PickUp Date: ".$pickupdate."\n"."Pickup Time: ".$pickuptime."\n"."PickUp Location: ".$pickUpLocation."\n"."Drop Off Location: ".$dorpOffLocation."\n"."Payment Method: ".$payment."\n"."Number Of Pasengers: ".$pasengers."\n"."Number of Suitcases: ".$suitcases."\n"
-        ."Vehical Type: ".$vehical."\n";
+        $subject="Book Ride";
+        $message="This Persion Book Our Vehical \n\n"."Full Name: ".$firstname. " ".$lastname."\n"."Phone : ".$phone."\n"."Passport Id: ".$passportId."\n";
         $headers="From : nadeesha@gmail.com";
 
         if(mail($to,$subject,$message,$headers)){
@@ -74,51 +75,48 @@
             echo "Someting Went Wrong";
         }
 
-		unset($_REQUEST["submit"]);
+		unset($_REQUEST["booking"]);
     }
 ?>
 
 <?php
 
-	// define variables and set to empty values
-	$nameErr = $emailErr = $phoneErr = "";
-	$name = $email = $phoneErr = "";
+    if (isset($_REQUEST["cancle"])){
+//  session_start();
 
-	if ($_SERVER["REQUEST_METHOD"] == "") {
+        $firstname=$_REQUEST['firstname'];
+        $lastname=$_REQUEST['lastname'];
+        $email=$_REQUEST['email'];
+        $phone=$_REQUEST['phone'];
+        $country=$_REQUEST['country'];
+        $passportId=$_REQUEST['passportId'];
+        $comments=$_REQUEST['comments'];
+        $pickupdate=$_REQUEST['pickupdate'];
+        $pickuptime=$_REQUEST['pickuptime'];
+        $pickUpLocation=$_REQUEST['pickUpLocation'];
+        $dorpOffLocation=$_REQUEST['dorpOffLocation'];
+        $payment=$_REQUEST['payment'];      
+        $pasengers=$_REQUEST['pasengers'];
+        $suitcases=$_REQUEST['suitcases'];
+        $vehical=$_REQUEST['selectVehical'];
 
-		if (empty($_POST["name"])) {
-			$nameErr = "Name is required";
-		} else {
-			$name = test_input($_POST["name"]);
-			// check if name only contains letters and whitespace
-			if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
-			$nameErr = "Only letters and white space allowed";
-			}
-		}
+
+        $to="pdncpathiraja95@gmail.com";
+        $subject="Cancle Ride";
+        $message="This Persion Book Our Vehical \n\n"."Full Name: ".$firstname. " ".$lastname."\n"."Phone : ".$phone."\n"."Passport Id: ".$passportId."\n";
+		$headers="From : nadeesha@gmail.com";
 		
-		if (empty($_POST["email"])) {
-			$emailErr = "Email is required";
-		} else {
-			$email = test_input($_POST["email"]);
-			// check if e-mail address is well-formed
-			if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-			$emailErr = "Invalid email format";
-			}
-		}
+        if(mail($to,$subject,$message,$headers)){
+            echo "<h2>You Cancle your Ride</h2>";
+        }
+        else{
+            echo "Someting Went Wrong";
+        }
 
-		if (empty($_POST["phone"])) {
-			$phoneErr = "Phone Number is required";
-		} else {
-			$phone = test_input($_POST["phone"]);
-			// check if e-mail address is well-formed
-			if (!filter_var($phone, FILTER_VALIDATE_EMAIL)) {
-			$phoneErr = "Invalid Phone Number format";
-			}
-		}
-	
-	}
-
+		unset($_REQUEST["cancle"]);
+    }
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -277,7 +275,7 @@
 
 				<div class="col-md-5">
 
-						<input type='button' onclick="window.location.replace('http://yayataxis.com/my-booking-info/?preview_id=610&preview_nonce=a5958a0fae&preview=true')" value='Cancle'>	
+						<input type='submit' name="cancle" onclick="window.location.replace('http://yayataxis.com/')" value='Cancle'>	
 						<input type="submit" value="BOOK NOW!" name="booking"/>
 					
 				</div>
