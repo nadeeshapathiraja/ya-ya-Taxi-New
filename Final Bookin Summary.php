@@ -60,7 +60,7 @@
         $payment=$_REQUEST['payment'];      
         $pasengers=$_REQUEST['pasengers'];
         $suitcases=$_REQUEST['suitcases'];
-        $vehical=$_REQUEST['selectVehical'];
+        $vehical=$_REQUEST['vehical'];
 
 
         $to="pdncpathiraja95@gmail.com";
@@ -98,12 +98,12 @@
         $payment=$_REQUEST['payment'];      
         $pasengers=$_REQUEST['pasengers'];
         $suitcases=$_REQUEST['suitcases'];
-        $vehical=$_REQUEST['selectVehical'];
+        $vehical=$_REQUEST['vehical'];
 
 
         $to="pdncpathiraja95@gmail.com";
         $subject="Cancle Ride";
-        $message="This Persion Book Our Vehical \n\n"."Full Name: ".$firstname. " ".$lastname."\n"."Phone : ".$phone."\n"."Passport Id: ".$passportId."\n";
+        $message="This Persion Cancle booking \n\n"."Full Name: ".$firstname. " ".$lastname."\n"."Phone : ".$phone."\n"."Passport Id: ".$passportId."\n";
 		$headers="From : nadeesha@gmail.com";
 		
         if(mail($to,$subject,$message,$headers)){
@@ -111,11 +111,14 @@
         }
         else{
             echo "Someting Went Wrong";
-        }
+		}
+		
+		window.location.replace('http://yayataxis.com/my-booking-info');
 
-		unset($_REQUEST["cancle"]);
+		
     }
 ?>
+
 
 
 <!DOCTYPE html>
@@ -274,9 +277,8 @@
 				</div>
 
 				<div class="col-md-5">
-
-						<input type='submit' name="cancle" onclick="window.location.replace('http://yayataxis.com/')" value='Cancle'>	
-						<input type="submit" value="BOOK NOW!" name="booking"/>
+					<input type='submit' name="cancle" value='Cancle'>
+					<input type="submit" value="BOOK NOW!" name="booking"/>
 					
 				</div>
 
