@@ -1,3 +1,4 @@
+<!-- After Press Submit Button -->
 <?php
 
     if (isset($_REQUEST["submit"])){
@@ -21,26 +22,58 @@
         $suitcases=$_REQUEST['suitcases'];
 		$vehical=$_REQUEST['selectVehical'];
 		
-		
+		//check for a valid email address
+		if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+			$error[] = 'Please enter a valid email address';
+		}
 
+//<!-- downlord csv file -->
+
+		//if no errors carry on
+		if(!isset($error)){
+
+			# Title of the CSV
+			$Content = "First Name, Last Name, Email, Phone, Country, Passport Id, Comments, Pickup Date, Pickup Time, Pickup Location, Drop Off Location,
+				 Payment Method, Number Of Pasengers, Number Of Suitcases, Vehical Type\n";
+
+			//set the data of the CSV
+			$Content .= "$firstname,$lastname,$email,$phone,$country,$passportId,$comments,$pickupdate,$pickuptime,$pickuptime,$pickUpLocation,
+			$dorpOffLocation,$payment,$pasengers,$suitcases,$vehical\n";
+
+			# set the file name and create CSV file
+			//$FileName = "formdata-".date("d-m-y-h:i:s").".csv";
+			$FileName = $passportId.".csv";
+			header('Content-Type: application/csv'); 
+			header('Content-Disposition: attachment; filename="' . $FileName . '"'); 
+			echo $Content;
+			exit();
+
+		}
+//end csv file genarate
+
+//Email send to admin
         $to="pdncpathiraja95@gmail.com";
         $subject="Add Ride";
         $message="This Persion want to book our Vehical \n\n"."Full Name: ".$firstname. " ".$lastname."\n"."E-mail: ".$email."\n"."Phone : ".$phone."\n"."Country: ".$country."\n"."Passport Id: ".$passportId."\n"."Comments: ".$comments."\n"
         ."PickUp Date: ".$pickupdate."\n"."Pickup Time: ".$pickuptime."\n"."PickUp Location: ".$pickUpLocation."\n"."Drop Off Location: ".$dorpOffLocation."\n"."Payment Method: ".$payment."\n"."Number Of Pasengers: ".$pasengers."\n"."Number of Suitcases: ".$suitcases."\n"
         ."Vehical Type: ".$vehical."\n";
-        $headers="From : nadeesha@gmail.com";
+        $headers="From : $email";
 
+		
         if(mail($to,$subject,$message,$headers)){
-            echo "<h2>Thank You</h2>";
+            echo "<h2>Thank You For Interest</h2>";
         }
         else{
             echo "Someting Went Wrong";
-        }
+		}
+		
+//end email sent code		
 
 		unset($_REQUEST["submit"]);
     }
 ?>
 
+<!-- After Press Booking Button -->
 <?php
 
     if (isset($_REQUEST["booking"])){
@@ -66,7 +99,15 @@
         $to="pdncpathiraja95@gmail.com";
         $subject="Book Ride";
         $message="This Persion Book Our Vehical \n\n"."Full Name: ".$firstname. " ".$lastname."\n"."Phone : ".$phone."\n"."Passport Id: ".$passportId."\n";
-        $headers="From : nadeesha@gmail.com";
+		$headers="From : $email";
+		
+		// if($email !=''&& $phone !=''&& $passportId !='')
+		// {
+		// 	//  To redirect form on a particular page
+		// 	header("Location:http://yayataxis.com/complete-submit/");
+		// }
+		window.open(“www.yayataxis.com/complete-submit/”);
+
 
         if(mail($to,$subject,$message,$headers)){
             echo "<h2>Email Sent Successfully! Thank You</h2>";
@@ -79,6 +120,7 @@
     }
 ?>
 
+<!-- Cancle button -->
 <?php
 
     if (isset($_REQUEST["cancle"])){
@@ -104,7 +146,7 @@
         $to="pdncpathiraja95@gmail.com";
         $subject="Cancle Ride";
         $message="This Persion Cancle booking \n\n"."Full Name: ".$firstname. " ".$lastname."\n"."Phone : ".$phone."\n"."Passport Id: ".$passportId."\n";
-		$headers="From : nadeesha@gmail.com";
+		$headers="From : $email";
 		
         if(mail($to,$subject,$message,$headers)){
             echo "<h2>You Cancle your Ride</h2>";
@@ -113,11 +155,14 @@
             echo "Someting Went Wrong";
 		}
 		
-		window.location.replace('http://yayataxis.com/my-booking-info');
+		// window.location.replace('http://yayataxis.com/my-booking-info');
+		window.open(“www.yayataxis.com/my-booking-info”);
 
 		
     }
 ?>
+
+
 
 
 
@@ -246,23 +291,16 @@
 						</div>
 					</div>						
 
-					<div class="row" style="margin-top: 50px;">
+					<!-- <div class="row" style="margin-top: 50px;">
 						<div class="col-md-6">
-							
 								<label>Total Distance</label>
-								<input name="distance" type="text" class="form-control" value="100Km">
-	
+								<input name="distance" type="text" class="form-control" value="100Km">	
 						</div>
-						<div class="col-md-6">
-							
-
+						<div class="col-md-6">	
 								<label>Total Price</label>
-								<input name="price" type="text" class="form-control" value="Rs 50000.00">
-
-							
-							
+								<input name="price" type="text" class="form-control" value="Rs 50000.00">	
 						</div>	
-					</div>
+					</div> -->
 				</div>
 
 			</div>
