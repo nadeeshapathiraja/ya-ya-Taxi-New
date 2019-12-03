@@ -27,29 +27,29 @@
 			$error[] = 'Please enter a valid email address';
 		}
 
-//<!-- downlord csv file -->
+// //<!-- downlord csv file -->
 
-		//if no errors carry on
-		if(!isset($error)){
+// 		//if no errors carry on
+// 		if(!isset($error)){
 
-			# Title of the CSV
-			$Content = "First Name, Last Name, Email, Phone, Country, Passport Id, Comments, Pickup Date, Pickup Time, Pickup Location, Drop Off Location,
-				 Payment Method, Number Of Pasengers, Number Of Suitcases, Vehical Type\n";
+// 			# Title of the CSV
+// 			$Content = "First Name, Last Name, Email, Phone, Country, Passport Id, Comments, Pickup Date, Pickup Time, Pickup Location, Drop Off Location,
+// 				 Payment Method, Number Of Pasengers, Number Of Suitcases, Vehical Type\n";
 
-			//set the data of the CSV
-			$Content .= "$firstname,$lastname,$email,$phone,$country,$passportId,$comments,$pickupdate,$pickuptime,$pickuptime,$pickUpLocation,
-			$dorpOffLocation,$payment,$pasengers,$suitcases,$vehical\n";
+// 			//set the data of the CSV
+// 			$Content .= "$firstname,$lastname,$email,$phone,$country,$passportId,$comments,$pickupdate,$pickuptime,$pickuptime,$pickUpLocation,
+// 			$dorpOffLocation,$payment,$pasengers,$suitcases,$vehical\n";
 
-			# set the file name and create CSV file
-			//$FileName = "formdata-".date("d-m-y-h:i:s").".csv";
-			$FileName = $passportId.".csv";
-			header('Content-Type: application/csv'); 
-			header('Content-Disposition: attachment; filename="' . $FileName . '"'); 
-			echo $Content;
-			exit();
+// 			# set the file name and create CSV file
+// 			//$FileName = "formdata-".date("d-m-y-h:i:s").".csv";
+// 			$FileName = $passportId.".csv";
+// 			header('Content-Type: application/csv'); 
+// 			header('Content-Disposition: attachment; filename="' . $FileName . '"'); 
+// 			echo $Content;
+// 			exit();
 
-		}
-//end csv file genarate
+// 		}
+// //end csv file genarate
 
 //Email send to admin
         $to="pdncpathiraja95@gmail.com";
@@ -61,7 +61,7 @@
 
 		
         if(mail($to,$subject,$message,$headers)){
-            echo "<h2>Thank You For Interest</h2>";
+            echo "<h2>Thank You For Interest Our Site</h2>";
         }
         else{
             echo "Someting Went Wrong";
@@ -106,7 +106,7 @@
 		// 	//  To redirect form on a particular page
 		// 	header("Location:http://yayataxis.com/complete-submit/");
 		// }
-		window.open(“www.yayataxis.com/complete-submit/”);
+		//window.open(“www.yayataxis.com/complete-submit/”);
 
 
         if(mail($to,$subject,$message,$headers)){
@@ -156,7 +156,7 @@
 		}
 		
 		// window.location.replace('http://yayataxis.com/my-booking-info');
-		window.open(“www.yayataxis.com/my-booking-info”);
+		//window.open(“www.yayataxis.com/my-booking-info”);
 
 		
     }
