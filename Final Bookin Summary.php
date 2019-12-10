@@ -1,7 +1,7 @@
 <!-- After Press Submit Button -->
 <?php
 
-    if (isset($_REQUEST["submit"])){
+    if (isset($_REQUEST["submitvalue"])){
 //  session_start();
 
 		
@@ -20,7 +20,7 @@
         $payment=$_REQUEST['payment'];      
         $pasengers=$_REQUEST['pasengers'];
         $suitcases=$_REQUEST['suitcases'];
-		$vehical=$_REQUEST['selectVehical'];
+		$vehicle=$_REQUEST['selectVehicle'];
 		
 		//check for a valid email address
 		if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
@@ -34,11 +34,11 @@
 
 // 			# Title of the CSV
 // 			$Content = "First Name, Last Name, Email, Phone, Country, Passport Id, Comments, Pickup Date, Pickup Time, Pickup Location, Drop Off Location,
-// 				 Payment Method, Number Of Pasengers, Number Of Suitcases, Vehical Type\n";
+// 				 Payment Method, Number Of Pasengers, Number Of Suitcases, Vehicle Type\n";
 
 // 			//set the data of the CSV
 // 			$Content .= "$firstname,$lastname,$email,$phone,$country,$passportId,$comments,$pickupdate,$pickuptime,$pickuptime,$pickUpLocation,
-// 			$dorpOffLocation,$payment,$pasengers,$suitcases,$vehical\n";
+// 			$dorpOffLocation,$payment,$pasengers,$suitcases,$vehicle\n";
 
 // 			# set the file name and create CSV file
 // 			//$FileName = "formdata-".date("d-m-y-h:i:s").".csv";
@@ -52,16 +52,16 @@
 // //end csv file genarate
 
 //Email send to admin
-        $to="pdncpathiraja95@gmail.com";
+        $to="kushani.ceilanco@gmail.com";
         $subject="Add Ride";
-        $message="This Persion want to book our Vehical \n\n"."Full Name: ".$firstname. " ".$lastname."\n"."E-mail: ".$email."\n"."Phone : ".$phone."\n"."Country: ".$country."\n"."Passport Id: ".$passportId."\n"."Comments: ".$comments."\n"
+        $message="This Persion want to book our Vehicle \n\n"."Full Name: ".$firstname. " ".$lastname."\n"."E-mail: ".$email."\n"."Phone : ".$phone."\n"."Country: ".$country."\n"."Passport Id: ".$passportId."\n"."Comments: ".$comments."\n"
         ."PickUp Date: ".$pickupdate."\n"."Pickup Time: ".$pickuptime."\n"."PickUp Location: ".$pickUpLocation."\n"."Drop Off Location: ".$dorpOffLocation."\n"."Payment Method: ".$payment."\n"."Number Of Pasengers: ".$pasengers."\n"."Number of Suitcases: ".$suitcases."\n"
-        ."Vehical Type: ".$vehical."\n";
+        ."Vehicle Type: ".$vehicle."\n";
         $headers="From : $email";
 
 		
         if(mail($to,$subject,$message,$headers)){
-            echo "<h2>Thank You For Interest Our Site</h2>";
+            echo "";
         }
         else{
             echo "Someting Went Wrong";
@@ -72,98 +72,6 @@
 		unset($_REQUEST["submit"]);
     }
 ?>
-
-<!-- After Press Booking Button -->
-<?php
-
-    if (isset($_REQUEST["booking"])){
-//  session_start();
-
-        $firstname=$_REQUEST['firstname'];
-        $lastname=$_REQUEST['lastname'];
-        $email=$_REQUEST['email'];
-        $phone=$_REQUEST['phone'];
-        $country=$_REQUEST['country'];
-        $passportId=$_REQUEST['passportId'];
-        $comments=$_REQUEST['comments'];
-        $pickupdate=$_REQUEST['pickupdate'];
-        $pickuptime=$_REQUEST['pickuptime'];
-        $pickUpLocation=$_REQUEST['pickUpLocation'];
-        $dorpOffLocation=$_REQUEST['dorpOffLocation'];
-        $payment=$_REQUEST['payment'];      
-        $pasengers=$_REQUEST['pasengers'];
-        $suitcases=$_REQUEST['suitcases'];
-        $vehical=$_REQUEST['vehical'];
-
-
-        $to="pdncpathiraja95@gmail.com";
-        $subject="Book Ride";
-        $message="This Persion Book Our Vehical \n\n"."Full Name: ".$firstname. " ".$lastname."\n"."Phone : ".$phone."\n"."Passport Id: ".$passportId."\n";
-		$headers="From : $email";
-		
-		// if($email !=''&& $phone !=''&& $passportId !='')
-		// {
-		// 	//  To redirect form on a particular page
-		// 	header("Location:http://yayataxis.com/complete-submit/");
-		// }
-		//window.open(“www.yayataxis.com/complete-submit/”);
-
-
-        if(mail($to,$subject,$message,$headers)){
-            echo "<h2>Email Sent Successfully! Thank You</h2>";
-        }
-        else{
-            echo "Someting Went Wrong";
-        }
-
-		unset($_REQUEST["booking"]);
-    }
-?>
-
-<!-- Cancle button -->
-<?php
-
-    if (isset($_REQUEST["cancle"])){
-//  session_start();
-
-        $firstname=$_REQUEST['firstname'];
-        $lastname=$_REQUEST['lastname'];
-        $email=$_REQUEST['email'];
-        $phone=$_REQUEST['phone'];
-        $country=$_REQUEST['country'];
-        $passportId=$_REQUEST['passportId'];
-        $comments=$_REQUEST['comments'];
-        $pickupdate=$_REQUEST['pickupdate'];
-        $pickuptime=$_REQUEST['pickuptime'];
-        $pickUpLocation=$_REQUEST['pickUpLocation'];
-        $dorpOffLocation=$_REQUEST['dorpOffLocation'];
-        $payment=$_REQUEST['payment'];      
-        $pasengers=$_REQUEST['pasengers'];
-        $suitcases=$_REQUEST['suitcases'];
-        $vehical=$_REQUEST['vehical'];
-
-
-        $to="pdncpathiraja95@gmail.com";
-        $subject="Cancle Ride";
-        $message="This Persion Cancle booking \n\n"."Full Name: ".$firstname. " ".$lastname."\n"."Phone : ".$phone."\n"."Passport Id: ".$passportId."\n";
-		$headers="From : $email";
-		
-        if(mail($to,$subject,$message,$headers)){
-            echo "<h2>You Cancle your Ride</h2>";
-        }
-        else{
-            echo "Someting Went Wrong";
-		}
-		
-		// window.location.replace('http://yayataxis.com/my-booking-info');
-		//window.open(“www.yayataxis.com/my-booking-info”);
-
-		
-    }
-?>
-
-
-
 
 
 <!DOCTYPE html>
@@ -185,11 +93,8 @@
 
 	<div class="container">
 
-		<form action="#" method="post">
+		<form class="bookingSummary" action="http://yayataxis.com/request-for-quote/" method="post">
 
-			<div>
-				<h1> Booking Summary</h1>
-			</div>
 
 			<div class="row">
 
@@ -273,13 +178,13 @@
 
 				<div class="col-md-4">
 
-					<div class="row">
+					<div class="row vehicalDetails">
 						<div class="col-md-12">
 
-						<h2>Vehical Details</h2>
+						<h2>Vehicle Details</h2>
                             
-                            <label>Vehical Type</label>
-							<input name="vehical" type="text" class="form-control" value=<?php echo $vehical ?>>
+                            <label>Vehicle Type</label>
+							<input name="vehicle" type="text" class="form-control" value=<?php echo $vehicle ?>>
 							
 							<label>Number Of Pasengers</label>
 							<input name="pasengers" type="text" class="form-control" value=<?php echo $pasengers ?>>
@@ -314,9 +219,9 @@
 					
 				</div>
 
-				<div class="col-md-5">
-					<input type='submit' name="cancle" value='Cancle'>
-					<input type="submit" value="BOOK NOW!" name="booking"/>
+				<div class="col-md-5">					
+					<input type="submit" class="bookNow" value="BOOK NOW" name="booking"/>
+					<input type="submit" class="cancel" value="CANCEL" name="cancle"/>
 					
 				</div>
 
